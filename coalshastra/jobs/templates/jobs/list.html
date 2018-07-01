@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <div class='row'>
+
+    {% for obj in object_list %}
+    {{ obj.StudentApplication.student_id_fk }}
+    <form method="post">
+        <div class='col col-md-12'>
+        	{% csrf_token %}
+        	<!-- <div class="row"> -->
+		        <span class="col col-md-3">{{ obj.title }}  </span>
+		        <span class="col col-md-3">{{ obj.description }}</span>
+		        <span class="col col-md-3">{{ obj.tags }} </span>
+		        <span class="col col-md-3">{{ obj.recruter_id }} </span>
+		        <input type="text" name="obj_id" value="{{ obj.pk }}">
+
+                    {% if obj.status == 1 %}
+                    <span class="btn btn-primary">Applied</span>
+                    {% else %}
+		        <span><button type="submit" class="btn btn-success">Apply</button></span>
+                    {% endif %}
+        	<!-- </div> -->
+        </div>
+    </form>
+    {% endfor %}
+</div>
+{% endblock %}

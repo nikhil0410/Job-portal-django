@@ -1,0 +1,12 @@
+apps that need to be made on internshala
+1. Login
+2. Registration
+	a. student 
+	b. Employer
+3. Job Posting
+	a. employer can add/view/edit/expire the job
+	b. Student can apply/ check status(shortlisted/hired/rejected)
+4. applications
+	a. employer can view the job application and take necessary action
+	b. student can view the jobs he applied
+5. User Profile

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+        <div class='row'>
+
+    {% for obj in object_list %}
+    <form method="post">
+        <div class='col col-md-12'>
+        	{% csrf_token %}
+        	<!-- <div class="row"> -->
+		        <span class="col col-md-3">{{ obj.job_fk.title }}  </span>
+		        <span class="col col-md-3">{{ obj.description }}</span>
+		        <span class="col col-md-3">{{ obj.tags }} </span>
+                <span class="col col-md-3">{{ obj.job_fk }} </span>
+                <span class="col col-md-3">{{ obj.student_fk }} </span>
+		        <span class="col col-md-3">Applied </span>
+                <input type="text" name="primary_key" value="{{ obj.pk }}">
+		        <!-- <input type="text" name="obj_id" value="{{ obj.pk }}"> -->
+		        <span><button type="submit" class="btn btn-primary">Delete</button></span>
+        	<!-- </div> -->
+        </div>
+    </form>
+    {% endfor %}
+</div>
+{% endblock %}
