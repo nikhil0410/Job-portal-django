@@ -9,10 +9,11 @@ class LoginForm(forms.Form):
 	username    = forms.CharField(label='username')
 	password = forms.CharField(widget=forms.PasswordInput)
 
-class RegistrationForm(forms.Form):
+class RegistrationForm(forms.ModelForm):
 	password1 = forms.CharField(label='password')
 	password2 = forms.CharField(label='Confirm Password')
 	user_email = forms.CharField(label='Email')
+	full_name = forms.CharField(label='Full Name')
 
 
 	class Meta:

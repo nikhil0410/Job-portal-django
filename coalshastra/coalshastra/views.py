@@ -39,3 +39,13 @@ class RegisterView(FormView):
 	form_class = RegistrationForm
 	template_name = 'register.html'
 	success_url='/login'
+
+	def form_valid(self,form):
+		request = self.request
+		# f = JobForm(request.POST)
+		if request.method == 'POST':
+			form = RegistrationForm(request.POST)
+			if form.is_valid():
+				print(form)
+				instance = form.save(commit=True)
+		return redirect('/')

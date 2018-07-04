@@ -73,7 +73,7 @@ class RegisterForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ( 'email',) #'full_name',)
+        fields = ( 'email','full_name','user_type') #'full_name',)
 
     def clean_password2(self):
         # Check that the two password entries match
