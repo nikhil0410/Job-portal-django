@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic import ListView, FormView
 from django.contrib.auth import get_user_model
@@ -27,13 +28,15 @@ class jobView(FormMixin,ListView):
 			return self.form_valid(form)
 
 def job_view(request):
-	if request.method == "POST":
+	if request.method == "POST" and request.is_ajax():
 		job_id = request.POST.get('obj_id')
 		job_object = Job.objects.get(id=job_id)
 		p = StudentApplication(job_fk = job_object, student_fk=request.user, title='Student Applied')
-		p.save()
+		print(p)
+		# p.save()
+		return JsonResponse(True,safe=False)
 		# print(request.POST.get('obj_id'))
-
+	# print(request.user.user_type)
 	queryset = Job.objects.all()
 	appliedset = StudentApplication.objects.filter(student_fk=request.user)
 	for q in queryset:
@@ -41,7 +44,7 @@ def job_view(request):
 		for a in appliedset:
 			if q.pk == a.job_fk.pk:
 				q.status = 1
-	print(appliedset)
+	# print(appliedset)
 	context = {
 		'object_list': queryset,
 		'applied_list': appliedset

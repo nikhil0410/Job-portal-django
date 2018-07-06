@@ -7,6 +7,7 @@
 {% url 'logout' as logout_url %}
 {% url 'register' as register_url %}
 {% url 'job-application' as job_application_url %}
+{{ request.user.user_type }}
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
    <div class='container'>
@@ -34,7 +35,8 @@
       </li> -->
       
 
-       <li class="nav-item dropdown">
+      {% if request.user.user_type == 2 %}
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Recruter
             </a>
@@ -44,6 +46,7 @@
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
           </li>
+          {% else %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Jobs
@@ -54,6 +57,7 @@
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
           </li>
+      {% endif %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Applied Jobs
@@ -64,6 +68,7 @@
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
           </li>
+      {% if request.user.user_type == 2 %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="{{ job_application_url }}" >
               Jobs Applications
@@ -74,7 +79,7 @@
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
           </li>
-
+      {% endif %}
 
     </ul>
     <ul class="navbar-nav ml-auto">

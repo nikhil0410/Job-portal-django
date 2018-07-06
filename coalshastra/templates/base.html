@@ -16,6 +16,40 @@
     </div>
 
         {% include 'base/js.html' %}
+        <script type="text/javascript">
+          $(document).ready(function(event){
+
+            jobform = $(".job_form")
+            jobform.submit(function(event){
+                event.preventDefault();
+                // console.log("Form is not sending")
+                var thisForm = $(this)
+                // var actionEndpoint = thisForm.attr("action"); // API Endpoint
+                var actionEndpoint = thisForm.attr("data-endpoint")
+                var httpMethod = thisForm.attr("method");
+                var formData = thisForm.serialize();
+                console.log(actionEndpoint, httpMethod, formData)
+
+                $.ajax({
+                  url: actionEndpoint,
+                  method: httpMethod,
+                  data: formData,
+                  success: function(data){
+                    // console.log(data)
+                    if(data == true){
+                      $(".apply").hide();
+                      $(".applied").show();
+                    }
+                  },
+                  error: function(errorData){
+                    console.log("error")
+                    console.log(errorData)
+                  }
+                })
+
+            })
+          });
+        </script>
 
     </body>
   </html>
